@@ -25,7 +25,9 @@ def main_menu():
         about()
     elif option == "Q":
         quit()
-
+    else:
+        print("Your choice is not valid, please enter 'R', 'I', 'M', 'A' or 'Q'.")
+        main_menu()
 
 
 def monitoring_menu():
@@ -37,11 +39,14 @@ def intelligence_menu():
     """Your documentation goes here"""
     # Your code goes here
 
-def about():
-    """Your documentation goes here"""
-    # Your code goes here
+def about(): #DONE 1 mark
+    """Prints module code and 6-digit candidate number, then returns to main menu
+    Parameters: None
+    Returns: None"""
+    print("ECM1400")
+    print("257111")
 
-def quit():
+def quit(): #DONE 1 mark
     """Quits program, with goodbye message
     Parameters: None
     Results: None"""
