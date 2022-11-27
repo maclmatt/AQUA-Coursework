@@ -4,7 +4,7 @@
 
 
 
-def daily_average(data, monitoring_station, pollutant):
+def daily_average(data, monitoring_station: str, pollutant: str) -> list:
     """Your documentation goes here"""
     
     ## Your code goes here
