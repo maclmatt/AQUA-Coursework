@@ -1,6 +1,5 @@
 import sys
-from reporting.py import daily_average, daily_median, hourly_average, monthly_average, peak_hour_date
-
+from reporting import daily_average, daily_median, hourly_average, monthly_average, peak_hour_date 
 
 def main_menu(): #DONE 2 marks
     """Gets and implements users choice from main menu
