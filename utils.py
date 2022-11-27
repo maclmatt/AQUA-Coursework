@@ -65,7 +65,3 @@ def countvalue(values: list, x: int or float) -> int: #DONE 2 marks
         else:
             raise TypeError("The list contains non-numerical values")
     return count
-
-
-list = [1, 2.5, 1, 2]
-print(countvalue(list, 1))

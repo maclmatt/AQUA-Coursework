@@ -1,4 +1,5 @@
 import sys
+from reporting.py import daily_average, daily_median, hourly_average, monthly_average, peak_hour_date
 
 
 def main_menu(): #DONE 2 marks
@@ -60,13 +61,13 @@ def reporting_menu():
 
 def monitoring_menu():
     """Your documentation goes here"""
-    # Your code goes here
+    
     main_menu()
 
 
 def intelligence_menu():
     """Your documentation goes here"""
-    # Your code goes here
+    
     main_menu()
 
 def about(): #DONE 1 mark
