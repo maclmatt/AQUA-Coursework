@@ -42,9 +42,63 @@ def reporting_menu():
     option = input("Please choose one of the above: ")
 
     if option == "DA":
-        print(" ")
+        print("Which monitoring station would you like the daily averages for?")
+        print("H - Harlington\n" + 
+            "M - Marylebone Road\n" +
+            "N - North Kensington\n"
+            "Q - Go back to Pollution Reporting Menu")
+        option = input("Please choose one of the above: ")
+        if option == "H":
+            monitoring_station = "Pollution-London Harlington.csv"
+        elif option == "M":
+            monitoring_station = "Pollution-London Marylebone Road.csv"
+        elif option == "N":
+            monitoring_station = "Pollution-London N Kensington.csv"
+        elif option == "Q":
+            reporting_menu()
+        else:
+            print("Invalid input, please enter 'H', 'M', 'N' or 'Q'.")
+            reporting_menu()
+        print("Which pollutant would you like the daily averages for?")
+        print("NO - Nitric oxide\n" +
+            "PM10 - PM10 inhalable particulate matter\n" +
+            "PM2.5 - PM2.5 inhalable particulate matter\n")
+        pollutant = input("Please choose one of the above: ")
+        if pollutant not in ["NO", "PM10", "PM2.5"]:
+            print("Invalid input, please enter 'NO', 'PM10' or 'PM2.5'.")
+            reporting_menu()
+
+        print(daily_average("data/", monitoring_station, pollutant))
+
     elif option == "DM":
-        print(" ")
+        print("Which monitoring station would you like the daily medians for?")
+        print("H - Harlington\n" + 
+            "M - Marylebone Road\n" +
+            "N - North Kensington\n"
+            "Q - Go back to Pollution Reporting Menu")
+        option = input("Please choose one of the above: ")
+        if option == "H":
+            monitoring_station = "Pollution-London Harlington.csv"
+        elif option == "M":
+            monitoring_station = "Pollution-London Marylebone Road.csv"
+        elif option == "N":
+            monitoring_station = "Pollution-London N Kensington.csv"
+        elif option == "Q":
+            reporting_menu()
+        else:
+            print("Invalid input, please enter 'H', 'M', 'N' or 'Q'.")
+            reporting_menu()
+        print("Which pollutant would you like the daily medians for?")
+        print("NO - Nitric oxide\n" +
+            "PM10 - PM10 inhalable particulate matter\n" +
+            "PM2.5 - PM2.5 inhalable particulate matter\n")
+        pollutant = input("Please choose one of the above: ")
+        if pollutant not in ["NO", "PM10", "PM2.5"]:
+            print("Invalid input, please enter 'NO', 'PM10' or 'PM2.5'.")
+            reporting_menu()
+
+        print(daily_median("data/", monitoring_station, pollutant))
+        
     elif option == "HA":
         print(" ")
     elif option == "MA":
@@ -59,7 +113,6 @@ def reporting_menu():
 
 
 def monitoring_menu():
-    """Your documentation goes here"""
     
     main_menu()
 
