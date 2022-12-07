@@ -1,5 +1,6 @@
 import sys
-from reporting import daily_average, daily_median, hourly_average, monthly_average, peak_hour_date 
+import datetime
+from reporting import daily_average, daily_median, hourly_average, monthly_average, peak_hour_date, count_missing_data, fill_missing_data
 
 def main_menu(): #DONE 2 marks
     """Gets and implements users choice from main menu
@@ -28,7 +29,7 @@ def main_menu(): #DONE 2 marks
         print("Your choice is not valid, please enter 'R', 'I', 'M', 'A' or 'Q'.")
         main_menu()
 
-def reporting_menu():
+def reporting_menu(): #DONE 2 marks
     """Allows user to navigate data analysis options from the pollution reporting module
     Parameters: None
     Returns: None"""
@@ -98,15 +99,101 @@ def reporting_menu():
             reporting_menu()
 
         print(daily_median("data/", monitoring_station, pollutant))
-        
-    elif option == "HA":
-        print(" ")
-    elif option == "MA":
-        print(" ")
-    elif option == "PH":
-        print(" ")
 
-    #should complete while doing 4.1.1 coding tasks (i.e., reporting.py)
+    elif option == "HA":
+        print("Which monitoring station would you like the hourly averages for?")
+        print("H - Harlington\n" + 
+            "M - Marylebone Road\n" +
+            "N - North Kensington\n"
+            "Q - Go back to Pollution Reporting Menu")
+        option = input("Please choose one of the above: ")
+        if option == "H":
+            monitoring_station = "Pollution-London Harlington.csv"
+        elif option == "M":
+            monitoring_station = "Pollution-London Marylebone Road.csv"
+        elif option == "N":
+            monitoring_station = "Pollution-London N Kensington.csv"
+        elif option == "Q":
+            reporting_menu()
+        else:
+            print("Invalid input, please enter 'H', 'M', 'N' or 'Q'.")
+            reporting_menu()
+        print("Which pollutant would you like the hourly averages for?")
+        print("NO - Nitric oxide\n" +
+            "PM10 - PM10 inhalable particulate matter\n" +
+            "PM2.5 - PM2.5 inhalable particulate matter\n")
+        pollutant = input("Please choose one of the above: ")
+        if pollutant not in ["NO", "PM10", "PM2.5"]:
+            print("Invalid input, please enter 'NO', 'PM10' or 'PM2.5'.")
+            reporting_menu()
+
+        print(hourly_average("data/", monitoring_station, pollutant))
+
+    elif option == "MA":
+
+        print("Which monitoring station would you like the monthly averages for?")
+        print("H - Harlington\n" + 
+            "M - Marylebone Road\n" +
+            "N - North Kensington\n"
+            "Q - Go back to Pollution Reporting Menu")
+        option = input("Please choose one of the above: ")
+        if option == "H":
+            monitoring_station = "Pollution-London Harlington.csv"
+        elif option == "M":
+            monitoring_station = "Pollution-London Marylebone Road.csv"
+        elif option == "N":
+            monitoring_station = "Pollution-London N Kensington.csv"
+        elif option == "Q":
+            reporting_menu()
+        else:
+            print("Invalid input, please enter 'H', 'M', 'N' or 'Q'.")
+            reporting_menu()
+        print("Which pollutant would you like the monthly averages for?")
+        print("NO - Nitric oxide\n" +
+            "PM10 - PM10 inhalable particulate matter\n" +
+            "PM2.5 - PM2.5 inhalable particulate matter\n")
+        pollutant = input("Please choose one of the above: ")
+        if pollutant not in ["NO", "PM10", "PM2.5"]:
+            print("Invalid input, please enter 'NO', 'PM10' or 'PM2.5'.")
+            reporting_menu()
+
+        print(monthly_average("data/", monitoring_station, pollutant))
+    
+    elif option == "PH":
+
+        print("Which monitoring station would you like the peak hour for?")
+        print("H - Harlington\n" + 
+            "M - Marylebone Road\n" +
+            "N - North Kensington\n"
+            "Q - Go back to Pollution Reporting Menu")
+        option = input("Please choose one of the above: ")
+        if option == "H":
+            monitoring_station = "Pollution-London Harlington.csv"
+        elif option == "M":
+            monitoring_station = "Pollution-London Marylebone Road.csv"
+        elif option == "N":
+            monitoring_station = "Pollution-London N Kensington.csv"
+        elif option == "Q":
+            reporting_menu()
+        else:
+            print("Invalid input, please enter 'H', 'M', 'N' or 'Q'.")
+            reporting_menu()
+        print("Which pollutant would you like the peak hour for?")
+        print("NO - Nitric oxide\n" +
+            "PM10 - PM10 inhalable particulate matter\n" +
+            "PM2.5 - PM2.5 inhalable particulate matter\n")
+        pollutant = input("Please choose one of the above: ")
+        if pollutant not in ["NO", "PM10", "PM2.5"]:
+            print("Invalid input, please enter 'NO', 'PM10' or 'PM2.5'.")
+            reporting_menu()
+        date_input = input("Which date would you like the peak hour for? (YYYY-MM-DD)")
+        try:
+            date = datetime.datetime.strptime(date_input, '%Y-%m-%d')
+        except:
+            print("Incorrect data format, should be YYYY-MM-DD")
+            reporting_menu()
+
+        print(peak_hour_date("data/", date, monitoring_station, pollutant))
 
     main_menu()
 
