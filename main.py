@@ -44,147 +44,117 @@ def reporting_menu(): #DONE 2 marks
 
     if option == "DA":
         print("Which monitoring station would you like the daily averages for?")
-        print("H - Harlington\n" + 
-            "M - Marylebone Road\n" +
-            "N - North Kensington\n"
+        print("HRL - Harlington\n" + 
+            "MY1 - Marylebone Road\n" +
+            "KC1 - North Kensington\n"
             "Q - Go back to Pollution Reporting Menu")
-        option = input("Please choose one of the above: ")
-        if option == "H":
-            monitoring_station = "Pollution-London Harlington.csv"
-        elif option == "M":
-            monitoring_station = "Pollution-London Marylebone Road.csv"
-        elif option == "N":
-            monitoring_station = "Pollution-London N Kensington.csv"
-        elif option == "Q":
+        sitecode = input("Please choose one of the above: ")
+        if sitecode == "Q":
             reporting_menu()
-        else:
-            print("Invalid input, please enter 'H', 'M', 'N' or 'Q'.")
+        elif sitecode not in ["HRL", "MY1", "KC1", "Q"]:
+            print("Invalid input, please enter 'HRL', 'MY1', 'KC1' or 'Q'.")
             reporting_menu()
         print("Which pollutant would you like the daily averages for?")
-        print("NO - Nitric oxide\n" +
-            "PM10 - PM10 inhalable particulate matter\n" +
-            "PM2.5 - PM2.5 inhalable particulate matter\n")
+        print("no - Nitric oxide\n" +
+            "pm10 - PM10 inhalable particulate matter\n" +
+            "pm25 - PM2.5 inhalable particulate matter\n")
         pollutant = input("Please choose one of the above: ")
-        if pollutant not in ["NO", "PM10", "PM2.5"]:
-            print("Invalid input, please enter 'NO', 'PM10' or 'PM2.5'.")
+        if pollutant not in ["no", "pm10", "pm25"]:
+            print("Invalid input, please enter 'no', 'pm10' or 'pm25'.")
             reporting_menu()
 
-        print(daily_average("data/", monitoring_station, pollutant))
+        print(daily_average("data/", sitecode, pollutant))
 
     elif option == "DM":
         print("Which monitoring station would you like the daily medians for?")
-        print("H - Harlington\n" + 
-            "M - Marylebone Road\n" +
-            "N - North Kensington\n"
+        print("HRL - Harlington\n" + 
+            "MY1 - Marylebone Road\n" +
+            "KC1 - North Kensington\n"
             "Q - Go back to Pollution Reporting Menu")
-        option = input("Please choose one of the above: ")
-        if option == "H":
-            monitoring_station = "Pollution-London Harlington.csv"
-        elif option == "M":
-            monitoring_station = "Pollution-London Marylebone Road.csv"
-        elif option == "N":
-            monitoring_station = "Pollution-London N Kensington.csv"
-        elif option == "Q":
+        sitecode = input("Please choose one of the above: ")
+        if sitecode == "Q":
             reporting_menu()
-        else:
-            print("Invalid input, please enter 'H', 'M', 'N' or 'Q'.")
+        elif sitecode not in ["HRL", "MY1", "KC1", "Q"]:
+            print("Invalid input, please enter 'HRL', 'MY1', 'KC1' or 'Q'.")
             reporting_menu()
         print("Which pollutant would you like the daily medians for?")
-        print("NO - Nitric oxide\n" +
-            "PM10 - PM10 inhalable particulate matter\n" +
-            "PM2.5 - PM2.5 inhalable particulate matter\n")
+        print("no - Nitric oxide\n" +
+            "pm10 - PM10 inhalable particulate matter\n" +
+            "pm25 - PM2.5 inhalable particulate matter\n")
         pollutant = input("Please choose one of the above: ")
-        if pollutant not in ["NO", "PM10", "PM2.5"]:
-            print("Invalid input, please enter 'NO', 'PM10' or 'PM2.5'.")
+        if pollutant not in ["no", "pm10", "pm25"]:
+            print("Invalid input, please enter 'no', 'pm10' or 'pm25'.")
             reporting_menu()
 
-        print(daily_median("data/", monitoring_station, pollutant))
+        print(daily_median("data/", sitecode, pollutant))
 
     elif option == "HA":
         print("Which monitoring station would you like the hourly averages for?")
-        print("H - Harlington\n" + 
-            "M - Marylebone Road\n" +
-            "N - North Kensington\n"
+        print("HRL - Harlington\n" + 
+            "MY1 - Marylebone Road\n" +
+            "KC1 - North Kensington\n"
             "Q - Go back to Pollution Reporting Menu")
-        option = input("Please choose one of the above: ")
-        if option == "H":
-            monitoring_station = "Pollution-London Harlington.csv"
-        elif option == "M":
-            monitoring_station = "Pollution-London Marylebone Road.csv"
-        elif option == "N":
-            monitoring_station = "Pollution-London N Kensington.csv"
-        elif option == "Q":
+        sitecode = input("Please choose one of the above: ")
+        if sitecode == "Q":
             reporting_menu()
-        else:
-            print("Invalid input, please enter 'H', 'M', 'N' or 'Q'.")
+        elif sitecode not in ["HRL", "MY1", "KC1", "Q"]:
+            print("Invalid input, please enter 'HRL', 'MY1', 'KC1' or 'Q'.")
             reporting_menu()
         print("Which pollutant would you like the hourly averages for?")
-        print("NO - Nitric oxide\n" +
-            "PM10 - PM10 inhalable particulate matter\n" +
-            "PM2.5 - PM2.5 inhalable particulate matter\n")
+        print("no - Nitric oxide\n" +
+            "pm10 - PM10 inhalable particulate matter\n" +
+            "pm25 - PM2.5 inhalable particulate matter\n")
         pollutant = input("Please choose one of the above: ")
-        if pollutant not in ["NO", "PM10", "PM2.5"]:
-            print("Invalid input, please enter 'NO', 'PM10' or 'PM2.5'.")
+        if pollutant not in ["no", "pm10", "pm25"]:
+            print("Invalid input, please enter 'no', 'pm10' or 'pm25'.")
             reporting_menu()
 
-        print(hourly_average("data/", monitoring_station, pollutant))
+        print(hourly_average("data/", sitecode, pollutant))
 
     elif option == "MA":
 
         print("Which monitoring station would you like the monthly averages for?")
-        print("H - Harlington\n" + 
-            "M - Marylebone Road\n" +
-            "N - North Kensington\n"
+        print("HRL - Harlington\n" + 
+            "MY1 - Marylebone Road\n" +
+            "KC1 - North Kensington\n"
             "Q - Go back to Pollution Reporting Menu")
-        option = input("Please choose one of the above: ")
-        if option == "H":
-            monitoring_station = "Pollution-London Harlington.csv"
-        elif option == "M":
-            monitoring_station = "Pollution-London Marylebone Road.csv"
-        elif option == "N":
-            monitoring_station = "Pollution-London N Kensington.csv"
-        elif option == "Q":
+        sitecode = input("Please choose one of the above: ")
+        if sitecode == "Q":
             reporting_menu()
-        else:
-            print("Invalid input, please enter 'H', 'M', 'N' or 'Q'.")
+        elif sitecode not in ["HRL", "MY1", "KC1", "Q"]:
+            print("Invalid input, please enter 'HRL', 'MY1', 'KC1' or 'Q'.")
             reporting_menu()
         print("Which pollutant would you like the monthly averages for?")
-        print("NO - Nitric oxide\n" +
-            "PM10 - PM10 inhalable particulate matter\n" +
-            "PM2.5 - PM2.5 inhalable particulate matter\n")
+        print("no - Nitric oxide\n" +
+            "pm10 - PM10 inhalable particulate matter\n" +
+            "pm25 - PM2.5 inhalable particulate matter\n")
         pollutant = input("Please choose one of the above: ")
-        if pollutant not in ["NO", "PM10", "PM2.5"]:
-            print("Invalid input, please enter 'NO', 'PM10' or 'PM2.5'.")
+        if pollutant not in ["no", "pm10", "pm25"]:
+            print("Invalid input, please enter 'no', 'pm10' or 'pm25'.")
             reporting_menu()
 
-        print(monthly_average("data/", monitoring_station, pollutant))
+        print(monthly_average("data/", sitecode, pollutant))
     
     elif option == "PH":
 
         print("Which monitoring station would you like the peak hour for?")
-        print("H - Harlington\n" + 
-            "M - Marylebone Road\n" +
-            "N - North Kensington\n"
+        print("HRL - Harlington\n" + 
+            "MY1 - Marylebone Road\n" +
+            "KC1 - North Kensington\n"
             "Q - Go back to Pollution Reporting Menu")
-        option = input("Please choose one of the above: ")
-        if option == "H":
-            monitoring_station = "Pollution-London Harlington.csv"
-        elif option == "M":
-            monitoring_station = "Pollution-London Marylebone Road.csv"
-        elif option == "N":
-            monitoring_station = "Pollution-London N Kensington.csv"
-        elif option == "Q":
+        sitecode = input("Please choose one of the above: ")
+        if sitecode == "Q":
             reporting_menu()
-        else:
-            print("Invalid input, please enter 'H', 'M', 'N' or 'Q'.")
+        elif sitecode not in ["HRL", "MY1", "KC1", "Q"]:
+            print("Invalid input, please enter 'HRL', 'MY1', 'KC1' or 'Q'.")
             reporting_menu()
         print("Which pollutant would you like the peak hour for?")
-        print("NO - Nitric oxide\n" +
-            "PM10 - PM10 inhalable particulate matter\n" +
-            "PM2.5 - PM2.5 inhalable particulate matter\n")
+        print("no - Nitric oxide\n" +
+            "pm10 - PM10 inhalable particulate matter\n" +
+            "pm25 - PM2.5 inhalable particulate matter\n")
         pollutant = input("Please choose one of the above: ")
-        if pollutant not in ["NO", "PM10", "PM2.5"]:
-            print("Invalid input, please enter 'NO', 'PM10' or 'PM2.5'.")
+        if pollutant not in ["no", "pm10", "pm25"]:
+            print("Invalid input, please enter 'no', 'pm10' or 'pm25'.")
             reporting_menu()
         date_input = input("Which date would you like the peak hour for? (YYYY-MM-DD)")
         try:
@@ -193,7 +163,7 @@ def reporting_menu(): #DONE 2 marks
             print("Incorrect data format, should be YYYY-MM-DD")
             reporting_menu()
 
-        print(peak_hour_date("data/", date, monitoring_station, pollutant))
+        print(peak_hour_date("data/", date, sitecode, pollutant))
 
     main_menu()
 

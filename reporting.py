@@ -18,12 +18,18 @@ def daily_average(data: str, monitoring_station: str, pollutant: str) -> list: #
         list: daily averages of pollutant at monitoring station
     """
     
-    if pollutant == "NO":
+    if pollutant == "no":
         pollutantindex = 2
-    elif pollutant == "PM10":
+    elif pollutant == "pm10":
         pollutantindex = 3
-    elif pollutant == "PM2.5":
+    elif pollutant == "pm25":
         pollutantindex = 4
+    if monitoring_station == "HRL":
+        monitoring_station = "Pollution-London Harlington.csv"
+    elif monitoring_station == "MY1":
+        monitoring_station = "Pollution-London Marylebone Road.csv"
+    elif monitoring_station == "KC1":
+        monitoring_station = "Pollution-London N Kensington.csv"
     with open(data + monitoring_station) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         rows = []
@@ -65,6 +71,12 @@ def daily_median(data: str, monitoring_station: str, pollutant: str) -> list: #D
         pollutantindex = 3
     elif pollutant == "PM2.5":
         pollutantindex = 4
+    if monitoring_station == "HRL":
+        monitoring_station = "Pollution-London Harlington.csv"
+    elif monitoring_station == "MY1":
+        monitoring_station = "Pollution-London Marylebone Road.csv"
+    elif monitoring_station == "KC1":
+        monitoring_station = "Pollution-London N Kensington.csv"
     with open(data + monitoring_station) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         rows = []
@@ -114,6 +126,12 @@ def hourly_average(data: str, monitoring_station: str, pollutant: str) -> list: 
         pollutantindex = 3
     elif pollutant == "PM2.5":
         pollutantindex = 4
+    if monitoring_station == "HRL":
+        monitoring_station = "Pollution-London Harlington.csv"
+    elif monitoring_station == "MY1":
+        monitoring_station = "Pollution-London Marylebone Road.csv"
+    elif monitoring_station == "KC1":
+        monitoring_station = "Pollution-London N Kensington.csv"
     with open(data + monitoring_station) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         rows = []
@@ -156,6 +174,12 @@ def monthly_average(data: str, monitoring_station: str, pollutant: str) -> list:
         pollutantindex = 3
     elif pollutant == "PM2.5":
         pollutantindex = 4
+    if monitoring_station == "HRL":
+        monitoring_station = "Pollution-London Harlington.csv"
+    elif monitoring_station == "MY1":
+        monitoring_station = "Pollution-London Marylebone Road.csv"
+    elif monitoring_station == "KC1":
+        monitoring_station = "Pollution-London N Kensington.csv"
     with open(data + monitoring_station) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         dates = []
@@ -199,6 +223,12 @@ def peak_hour_date(data: str, date: str, monitoring_station: str, pollutant: str
         pollutantindex = 3
     elif pollutant == "PM2.5":
         pollutantindex = 4
+    if monitoring_station == "HRL":
+        monitoring_station = "Pollution-London Harlington.csv"
+    elif monitoring_station == "MY1":
+        monitoring_station = "Pollution-London Marylebone Road.csv"
+    elif monitoring_station == "KC1":
+        monitoring_station = "Pollution-London N Kensington.csv"
     with open(data + monitoring_station) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         dates = []
@@ -219,8 +249,6 @@ def peak_hour_date(data: str, date: str, monitoring_station: str, pollutant: str
         peakhour = peakvalueindex + 1
         return peakhour
         
-
-
 def count_missing_data(data: str, monitoring_station: str, pollutant: str) -> int: #DONE 4 marks
     """Calculates number of 'No data' entries in the data for a particular monitoring station and pollutant
 
@@ -239,6 +267,12 @@ def count_missing_data(data: str, monitoring_station: str, pollutant: str) -> in
         pollutantindex = 3
     elif pollutant == "PM2.5":
         pollutantindex = 4
+    if monitoring_station == "HRL":
+        monitoring_station = "Pollution-London Harlington.csv"
+    elif monitoring_station == "MY1":
+        monitoring_station = "Pollution-London Marylebone Road.csv"
+    elif monitoring_station == "KC1":
+        monitoring_station = "Pollution-London N Kensington.csv"
     with open(data + monitoring_station) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         rows = []
@@ -270,6 +304,12 @@ def fill_missing_data(data: str, new_value: float,  monitoring_station: str, pol
         pollutantindex = 3
     elif pollutant == "PM2.5":
         pollutantindex = 4
+    if monitoring_station == "HRL":
+        monitoring_station = "Pollution-London Harlington.csv"
+    elif monitoring_station == "MY1":
+        monitoring_station = "Pollution-London Marylebone Road.csv"
+    elif monitoring_station == "KC1":
+        monitoring_station = "Pollution-London N Kensington.csv"
     with open(data + monitoring_station) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         rows = []
