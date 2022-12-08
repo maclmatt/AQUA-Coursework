@@ -63,7 +63,7 @@ def reporting_menu(): #DONE 2 marks
             print("Invalid input, please enter 'no', 'pm10' or 'pm25'.")
             reporting_menu()
 
-        print(daily_average("data/", sitecode, pollutant))
+        print(daily_average(" ", sitecode, pollutant))
 
     elif option == "DM":
         print("Which monitoring station would you like the daily medians for?")
@@ -86,7 +86,7 @@ def reporting_menu(): #DONE 2 marks
             print("Invalid input, please enter 'no', 'pm10' or 'pm25'.")
             reporting_menu()
 
-        print(daily_median("data/", sitecode, pollutant))
+        print(daily_median(" ", sitecode, pollutant))
 
     elif option == "HA":
         print("Which monitoring station would you like the hourly averages for?")
@@ -109,7 +109,7 @@ def reporting_menu(): #DONE 2 marks
             print("Invalid input, please enter 'no', 'pm10' or 'pm25'.")
             reporting_menu()
 
-        print(hourly_average("data/", sitecode, pollutant))
+        print(hourly_average(" ", sitecode, pollutant))
 
     elif option == "MA":
 
@@ -133,7 +133,7 @@ def reporting_menu(): #DONE 2 marks
             print("Invalid input, please enter 'no', 'pm10' or 'pm25'.")
             reporting_menu()
 
-        print(monthly_average("data/", sitecode, pollutant))
+        print(monthly_average(" ", sitecode, pollutant))
     
     elif option == "PH":
 
@@ -163,7 +163,7 @@ def reporting_menu(): #DONE 2 marks
             print("Incorrect data format, should be YYYY-MM-DD")
             reporting_menu()
 
-        print(peak_hour_date("data/", date, sitecode, pollutant))
+        print(peak_hour_date(" ", date, sitecode, pollutant))
 
     main_menu()
 

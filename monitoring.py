@@ -7,6 +7,7 @@
 # 
 # You can access the API documentation here http://api.erg.ic.ac.uk/AirQuality/help
 #
+import matplotlib.pyplot as plt #def will need
 
 def get_live_data_from_api(site_code='MY1',species_code='NO',start_date=None,end_date=None):
     """
