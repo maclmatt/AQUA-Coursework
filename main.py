@@ -2,6 +2,8 @@ import sys
 import datetime
 from reporting import daily_average, daily_median, hourly_average, monthly_average, peak_hour_date, count_missing_data, fill_missing_data
 from intelligence import find_red_pixels, find_cyan_pixels, detect_connected_components, detect_connected_components_sorted
+from monitoring import day_graph, week_graph, month_graph, day_graph_pollutant, week_graph_pollutant, month_graph_pollutant, health_advice, yearly_reports, safest_place
+
 
 def main_menu(): #DONE 2 marks
     """Gets and implements users choice from main menu
@@ -218,7 +220,7 @@ def reporting_menu(): #DONE 2 marks
 
     main_menu()
 
-def monitoring_menu(): #DONE 2 marks
+def monitoring_menu(): #DONE 2 marks, not tested
     """Allows user to navigate image analysis options from the mobility intelligence module
     Parameters: None
     Returns: None"""
@@ -243,17 +245,129 @@ def monitoring_menu(): #DONE 2 marks
         print("A list of all the pavements and there size (in number of pixels) has been saved to the file: 'cc-output-2a.txt'")
 
     elif option == "SDC":
-        pavements = detect_connected_components(find_red_pixels("map.png"))
+        MARK = detect_connected_components(find_red_pixels("map.png"))
+        pavements = detect_connected_components_sorted(MARK)
         print("A list of all the pavements and there size (in number of pixels)\n" + 
             "in ascending order has been saved to the file: 'cc-output-2b.txt'")
         print("An image representing the two largest pavements has been saved to the file: 'cc-top-2.jpg'")
 
     main_menu()
 
+def intelligence_menu(): #DONE 2 marks, not tested and more options could be added
+    """Allows user to navigate live data analysis options from the real-time monitoring module
+    Parameters: None
+    Returns: None"""
 
-def intelligence_menu():
-    """Your documentation goes here"""
+    print("Real-time Monitoring Menu:")
+    print("Which period of time would you like to see a graph for?")
+    print("1 - Day\n" +
+        "2 - Week\n" +
+        "3 - Month\n")
+    option = input("Please choose one of the above: ")
     
+    if option == "1":
+        print("Which monitoring station would you like to see the graph for?")
+        print("HRL - Harlington\n" + 
+            "MY1 - Marylebone Road\n" +
+            "KC1 - North Kensington\n"
+            "Q - Go back to Real-time Monitoring Menu")
+        sitecode = input("Please choose one of the above: ")
+        if sitecode == "Q":
+            intelligence_menu()
+        elif sitecode not in ["HRL", "MY1", "KC1", "Q"]:
+            print("Invalid input, please enter 'HRL', 'MY1', 'KC1' or 'Q'.")
+            intelligence_menu()
+        one_or_more = input("Would you like to see a graph for all the pollutants? (Y/N) ")
+        if one_or_more == "Y":
+            day_graph(sitecode)
+        elif one_or_more == "N":
+            print("Which pollutant would you like to see the graph for?")
+            print("NO - Nitric oxide\n" +
+                "PM10 - PM10 inhalable particulate matter\n" +
+                "PM25 - PM2.5 inhalable particulate matter\n")
+            pollutant = input("Please choose one of the above: ")
+            if pollutant not in ["NO", "PM10", "PM25"]:
+                print("Invalid input, please enter 'NO', 'PM10' or 'PM25'.")
+                intelligence_menu()
+            day_graph_pollutant(sitecode, pollutant)
+
+    if option == "2":
+        print("Which monitoring station would you like to see the graph for?")
+        print("HRL - Harlington\n" + 
+            "MY1 - Marylebone Road\n" +
+            "KC1 - North Kensington\n"
+            "Q - Go back to Real-time Monitoring Menu")
+        sitecode = input("Please choose one of the above: ")
+        if sitecode == "Q":
+            intelligence_menu()
+        elif sitecode not in ["HRL", "MY1", "KC1", "Q"]:
+            print("Invalid input, please enter 'HRL', 'MY1', 'KC1' or 'Q'.")
+            intelligence_menu()
+        one_or_more = input("Would you like to see a graph for all the pollutants? (Y/N) ")
+        if one_or_more == "Y":
+            week_graph(sitecode)
+        elif one_or_more == "N":
+            print("Which pollutant would you like to see the graph for?")
+            print("NO - Nitric oxide\n" +
+                "PM10 - PM10 inhalable particulate matter\n" +
+                "PM25 - PM2.5 inhalable particulate matter\n")
+            pollutant = input("Please choose one of the above: ")
+            if pollutant not in ["NO", "PM10", "PM25"]:
+                print("Invalid input, please enter 'NO', 'PM10' or 'PM25'.")
+                intelligence_menu()
+            week_graph_pollutant(sitecode, pollutant)
+
+    if option == "3":
+        print("Which monitoring station would you like to see the graph for?")
+        print("HRL - Harlington\n" + 
+            "MY1 - Marylebone Road\n" +
+            "KC1 - North Kensington\n"
+            "Q - Go back to Real-time Monitoring Menu")
+        sitecode = input("Please choose one of the above: ")
+        if sitecode == "Q":
+            intelligence_menu()
+        elif sitecode not in ["HRL", "MY1", "KC1", "Q"]:
+            print("Invalid input, please enter 'HRL', 'MY1', 'KC1' or 'Q'.")
+            intelligence_menu()
+        one_or_more = input("Would you like to see a graph for all the pollutants? (Y/N) ")
+        if one_or_more == "Y":
+            month_graph(sitecode)
+        elif one_or_more == "N":
+            print("Which pollutant would you like to see the graph for?")
+            print("NO - Nitric oxide\n" +
+                "PM10 - PM10 inhalable particulate matter\n" +
+                "PM25 - PM2.5 inhalable particulate matter\n")
+            pollutant = input("Please choose one of the above: ")
+            if pollutant not in ["NO", "PM10", "PM25"]:
+                print("Invalid input, please enter 'NO', 'PM10' or 'PM25'.")
+                intelligence_menu()
+            month_graph_pollutant(sitecode, pollutant)
+
+        
+    #old styuff
+    if option == "HA":
+
+        print("Which monitoring station are you close to?")
+        print("HRL - Harlington\n" + 
+            "MY1 - Marylebone Road\n" +
+            "KC1 - North Kensington\n"
+            "Q - Go back to Real-time Monitoring Menu")
+        sitecode = input("Please choose one of the above: ")
+        if sitecode == "Q":
+            intelligence_menu()
+        elif sitecode not in ["HRL", "MY1", "KC1", "Q"]:
+            print("Invalid input, please enter 'HRL', 'MY1', 'KC1' or 'Q'.")
+            intelligence_menu()
+
+        print(health_advice())
+
+    elif option == "YR":
+        yearly_reports()
+
+    elif option == "SP":
+        safest_place()
+
+
     main_menu()
 
 def about(): #DONE 1 mark

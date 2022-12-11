@@ -55,3 +55,52 @@
 
 #for i in range(1, 3):
     #print(i)
+
+import requests
+import json
+
+GROUP_NAME = 'London'
+BASE_URL = 'http://api.erg.ic.ac.uk/AirQuality'
+
+x = requests.get(BASE_URL + '/Information/MonitoringLocalAuthority/GroupName=' + GROUP_NAME + '/Json')
+print (x.status_code) #200 means it all went ok
+print (json.dumps(x.json(), indent=4))
+authorities = x.json()
+for authority in authorities['LocalAuthorities']['LocalAuthority']:
+    print(authority['@LocalAuthorityName'])
+    print(authority['@LocalAuthorityCode'])
+
+x = requests.get(BASE_URL + '/Information/MonitoringSites/GroupName=' + GROUP_NAME + '/Json')
+print (x.status_code) #200 means it all went ok
+print (json.dumps(x.json(), indent=4))
+sites = x.json()
+for site in sites['Sites']['Site']:
+    print(site['@LocalAuthorityName'])
+    print(site['@LocalAuthorityCode'])
+    print(site['@SiteName'])
+    print(site['@SiteCode'])
+
+x = requests.get(BASE_URL + '/Information/Species/Json')
+print (x.status_code) #200 means it all went ok
+print (json.dumps(x.json(), indent=4))
+
+
+x = requests.get(BASE_URL + '/Daily/MonitoringIndex/Latest/LocalAuthorityId=5/Json')
+print (x.status_code) #200 means it all went ok
+print (json.dumps(x.json(), indent=4))
+
+x = requests.get(BASE_URL + '/Daily/MonitoringIndex/Latest/SiteCode=BY7/Json')
+print (x.status_code) #200 means it all went ok
+print (json.dumps(x.json(), indent=4))
+
+x = requests.get(BASE_URL + '/Information/IndexHealthAdvice/AirQualityIndex=2/Json')
+print (x.status_code) #200 means it all went ok
+print (json.dumps(x.json(), indent=4))
+
+x = requests.get(BASE_URL + '/Information/IndexHealthAdvice/AirQualityIndex=5/Json')
+print (x.status_code) #200 means it all went ok
+print (json.dumps(x.json(), indent=4))
+
+x = requests.get(BASE_URL + '/Information/IndexHealthAdvice/AirQualityIndex=8/Json')
+print (x.status_code) #200 means it all went ok
+print (json.dumps(x.json(), indent=4))
