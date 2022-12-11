@@ -55,9 +55,3 @@
 
 #for i in range(1, 3):
     #print(i)
-
-#how to run 4.2 intelligence.py, from end of file
-red_pixels = find_red_pixels("map.png")
-MARK = detect_connected_components(red_pixels)
-
-detect_connected_components_sorted(MARK)
