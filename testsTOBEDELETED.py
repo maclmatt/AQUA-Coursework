@@ -100,3 +100,84 @@ np.save("map-red-pixels.jpg", red_image1, allow_pickle=True, fix_imports=True)
 
 #line 10
 red_image = np.empty((1053, 1140))
+
+
+
+
+   im = Image.open(map_filename)
+    pix = im.load()
+    width, height = im.size
+
+    MARK = []
+    for i in range(0, 1053):
+        MARK.append([])
+        for j in range(0, 1140):
+            MARK[i].append(0)
+
+    Q = [] #try and change to numpy array later
+    WHITE = (255, 255, 255)
+    conncomponents = 0
+
+    whitepixels = 0
+    for j in range(0, height):
+        for i in range(0, width):
+            if pix[i, j] == WHITE:
+                whitepixels += 1
+    print(whitepixels)
+
+    whitepixels = 0
+
+    for j in range(0, height):
+        for i in range(0, width):
+            regionsize = 0
+            if (pix[i, j] == WHITE) and (MARK[i][j] == 0):
+                MARK[i][j] = 1
+                Q.append((i, j))
+                while Q != []:
+                    q = Q.pop(0)
+                    x = q[0]
+                    y = q[1]
+                    n = []
+                    for i in range(-1, 2):
+                        for j in range(-1, 2):
+                            n.append((x+i, y+j))
+                    n.remove((x, y))
+
+                    regionsize += 1
+                    for each in n:
+                        if (pix[each[0], each[1]] == WHITE) and (MARK[each[0]][each[1]] == 0):
+                            regionsize += 1
+                            MARK[each[0]][each[1]] = 1
+                            Q.append(each)
+                    
+                if regionsize >= 2:
+                    conncomponents += 1
+                    whitepixels += regionsize
+                    #print(conncomponents, regionsize)
+    
+    print(whitepixels)
+    
+
+
+    #for {each pixel in IMG, going through each row left to right}:
+        #if {pixel(x, y) is white} and {MARK(x, y) is unvisited}:
+            #set {MARK(x, y) to visited}
+            #append {pixel(x, y) to Q}
+            #while Q != []:
+                #remove the first item from Q, set this to q(m, n)
+                #for each 8-neighbour n(s, t) of q(m, n):
+                    #if n(s, t) is white and MARK(s, t) is unvisited:
+                        #set MARK(s, t) to visited
+                        #add n(s, t) to Q
+    
+    #count = 1
+    #noconnected = 0
+    #for each in MARK
+        #if each != 0:
+            #write to text file("Connected Component", count, ", number of pixels =", each)
+            #noconnected += 1
+        #count += 1
+    #write to text file("Total number of connected components =", noconnected)
+
+red_image = red_image.transpose(Image.Transpose.ROTATE_270)
+    red_image = red_image.transpose(Image.Transpose.FLIP_LEFT_RIGHT)

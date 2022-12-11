@@ -53,15 +53,12 @@ def meannvalue(values: list) -> float: #DONE 2 marks
     mean = sumvalues(values)/len(values)
     return mean
 
-def countvalue(values: list, x: int or float) -> int: #DONE 2 marks
+def countvalue(values: list, x: any) -> int: #DONE 2 marks
     """Returns occurrences of the value x in the list values
     Parameters - values : list, x : int/float
     Returns - occurrences of x : int"""  
     count = 0  
     for each in values:
-        if type(each) == int or type(each) == float:
-            if each == x:
-                count += 1
-        else:
-            raise TypeError("The list contains non-numerical values")
+        if each == x:
+            count += 1
     return count
