@@ -1,6 +1,7 @@
 import sys
 import datetime
 from reporting import daily_average, daily_median, hourly_average, monthly_average, peak_hour_date, count_missing_data, fill_missing_data
+from intelligence import find_red_pixels, find_cyan_pixels, detect_connected_components, detect_connected_components_sorted
 
 def main_menu(): #DONE 2 marks
     """Gets and implements users choice from main menu
@@ -39,7 +40,9 @@ def reporting_menu(): #DONE 2 marks
         "DM - Daily Median\n" +
         "HA - Hourly Average\n" +
         "MA - Monthly Average\n" +
-        "PH - Peak Hour\n")
+        "PH - Peak Hour\n" + 
+        "CM - Count Missing Data\n" + 
+        "FM - Fill Missing Data\n")
     option = input("Please choose one of the above: ")
 
     if option == "DA":
@@ -165,12 +168,86 @@ def reporting_menu(): #DONE 2 marks
 
         print(peak_hour_date(" ", date, sitecode, pollutant))
 
+    elif option == "CM":
+
+        print("Which monitoring station would you like to count the missing data for?")
+        print("HRL - Harlington\n" + 
+            "MY1 - Marylebone Road\n" +
+            "KC1 - North Kensington\n"
+            "Q - Go back to Pollution Reporting Menu")
+        sitecode = input("Please choose one of the above: ")
+        if sitecode == "Q":
+            reporting_menu()
+        elif sitecode not in ["HRL", "MY1", "KC1", "Q"]:
+            print("Invalid input, please enter 'HRL', 'MY1', 'KC1' or 'Q'.")
+            reporting_menu()
+        print("Which pollutant would you like to count the missing data for?")
+        print("no - Nitric oxide\n" +
+            "pm10 - PM10 inhalable particulate matter\n" +
+            "pm25 - PM2.5 inhalable particulate matter\n")
+        pollutant = input("Please choose one of the above: ")
+        if pollutant not in ["no", "pm10", "pm25"]:
+            print("Invalid input, please enter 'no', 'pm10' or 'pm25'.")
+            reporting_menu()
+        print("There are", count_missing_data(" ", sitecode, pollutant), "missing values")
+
+    elif option == "FM":
+
+        print("Which monitoring station would you like to fill the missing values for?")
+        print("HRL - Harlington\n" + 
+            "MY1 - Marylebone Road\n" +
+            "KC1 - North Kensington\n"
+            "Q - Go back to Pollution Reporting Menu")
+        sitecode = input("Please choose one of the above: ")
+        if sitecode == "Q":
+            reporting_menu()
+        elif sitecode not in ["HRL", "MY1", "KC1", "Q"]:
+            print("Invalid input, please enter 'HRL', 'MY1', 'KC1' or 'Q'.")
+            reporting_menu()
+        print("Which pollutant would you like to fill the missing values for?")
+        print("no - Nitric oxide\n" +
+            "pm10 - PM10 inhalable particulate matter\n" +
+            "pm25 - PM2.5 inhalable particulate matter\n")
+        pollutant = input("Please choose one of the above: ")
+        if pollutant not in ["no", "pm10", "pm25"]:
+            print("Invalid input, please enter 'no', 'pm10' or 'pm25'.")
+            reporting_menu()
+        new_value = input("Please enter the value you would like to replace the missing values with: ")
+
+        fill_missing_data(" ", new_value, sitecode, pollutant)
+
     main_menu()
 
+def monitoring_menu(): #DONE 2 marks
+    """Allows user to navigate image analysis options from the mobility intelligence module
+    Parameters: None
+    Returns: None"""
 
+    print("Mobility Intelligence Menu:")
+    print("RP - Generate image representing all the red pixels from original map\n" +
+        "CP - Generate image representing all the cyan pixels from original mapn\n" +
+        "DC - Detect all connected pavement pixels\n" +
+        "SDC - Sort all connected pavement regions\n")
+    option = input("Please choose one of the above: ")
 
-def monitoring_menu():
+    if option == "RP":
+        red_pixels = find_red_pixels("map.png")
+        print("An image of the map with only the red pixels represented has been generated and saved to the file: 'map-red-pixels.jpg'.")
     
+    elif option == "CP":
+        cyan_pixels = find_cyan_pixels("map.png")
+        print("An image of the map with only the red pixels represented has been generated and saved to the file: 'map-cyan-pixels.jpg'.")
+    
+    elif option == "DC":
+        pavements = detect_connected_components(find_red_pixels("map.png"))
+        print("A list of all the pavements and there size (in number of pixels) has been saved to the file: 'cc-output-2a.txt'")
+
+    elif option == "SDC":
+        pavements = detect_connected_components(find_red_pixels("map.png"))
+        print("A list of all the pavements and there size (in number of pixels)\n" + 
+            "in ascending order has been saved to the file: 'cc-output-2b.txt'")
+        print("An image representing the two largest pavements has been saved to the file: 'cc-top-2.jpg'")
+
     main_menu()
 
 

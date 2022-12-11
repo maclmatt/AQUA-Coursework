@@ -213,9 +213,3 @@ def detect_connected_components_sorted(MARK: list): #DONE 4 marks
     if largest_comps.mode != 'RGB':
         largest_comps = largest_comps.convert('RGB')
     largest_comps.save("cc-top-2.jpg")
-    
-
-red_pixels = find_red_pixels("map.png")
-MARK = detect_connected_components(red_pixels)
-
-detect_connected_components_sorted(MARK)
