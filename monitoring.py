@@ -9,7 +9,6 @@
 #
 import matplotlib.pyplot as plt
 import requests
-import json
 import datetime
 from utils import maxvalue
 import numpy as np

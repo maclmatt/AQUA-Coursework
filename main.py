@@ -2,7 +2,7 @@ import sys
 import datetime
 from reporting import daily_average, daily_median, hourly_average, monthly_average, peak_hour_date, count_missing_data, fill_missing_data
 from intelligence import find_red_pixels, find_cyan_pixels, detect_connected_components, detect_connected_components_sorted
-from monitoring import day_graph, week_graph, month_graph, day_graph_pollutant, week_graph_pollutant, month_graph_pollutant, health_advice, yearly_reports, safest_place
+from monitoring import day_graph, week_graph, month_graph, day_graph_pollutant, week_graph_pollutant, month_graph_pollutant, health_advice
 
 
 def main_menu(): #DONE 2 marks
@@ -253,7 +253,7 @@ def intelligence_menu(): #DONE 2 marks, not tested
 
     main_menu()
 
-def monitoring_menu(): #DONE 2 marks, more options could be added
+def monitoring_menu(): #DONE 2 marks
     """Allows user to navigate live data analysis options from the real-time monitoring module
     Parameters: None
     Returns: None"""

@@ -1,9 +1,7 @@
 import numpy as np
 import csv
 import datetime
-from utils import sumvalues, meannvalue, countvalue, maxvalue
-
-#DELETE AT SOME POINT: executive decision made to just not append anything when 'no data' is encountered
+from utils import meannvalue, maxvalue
 
 
 def daily_average(data: str, monitoring_station: str, pollutant: str) -> list: #DONE 4 marks
