@@ -104,3 +104,23 @@ print (json.dumps(x.json(), indent=4))
 x = requests.get(BASE_URL + '/Information/IndexHealthAdvice/AirQualityIndex=8/Json')
 print (x.status_code) #200 means it all went ok
 print (json.dumps(x.json(), indent=4))
+
+
+def yearly_reports():
+    """Your documentation goes here"""
+    # Your code goes here
+
+def safest_place():
+    """Your documentation goes here"""
+    # Your code goes here
+
+    BASE_URL = 'http://api.erg.ic.ac.uk/AirQuality'
+    x = requests.get(BASE_URL + '/Daily/MonitoringIndex/Latest/SiteCode={}/Json'.format('MY1'))
+    if x.status_code == 200:
+        return x.json()
+    else:
+        raise Exception(str(x.status_code) + " error code.")
+
+def rm_function_4(*args,**kwargs):
+    """Your documentation goes here"""
+    # Your code goes here

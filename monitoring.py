@@ -81,7 +81,6 @@ def day_graph(site_code: str):
         data = get_live_data_from_api(site_code, pollutants[i])
         for each in data['RawAQData']['Data']:
             hour = each['@MeasurementDateGMT']
-            print(hour)
             value = each['@Value']
             if value == '':
                 value = 0
@@ -107,7 +106,6 @@ def week_graph(site_code: str):
         data = get_live_data_from_api(site_code, pollutants[i], week_ago, today)
         for each in data['RawAQData']['Data']:
             hour = each['@MeasurementDateGMT']
-            print(hour)
             value = each['@Value']
             if value == '':
                 value = 0
@@ -133,7 +131,6 @@ def month_graph(site_code: str):
         data = get_live_data_from_api(site_code, pollutants[i], month_ago, today)
         for each in data['RawAQData']['Data']:
             hour = each['@MeasurementDateGMT']
-            print(hour)
             value = each['@Value']
             if value == '':
                 value = 0
@@ -204,7 +201,6 @@ def month_graph_pollutant(site_code: str, pollutant: str) -> None:
     data = get_live_data_from_api(site_code, pollutant, month_ago, today)
     for each in data['RawAQData']['Data']:
         hour = each['@MeasurementDateGMT']
-        print(hour)
         value = each['@Value']
         if value == '':
             value = 0
@@ -214,68 +210,31 @@ def month_graph_pollutant(site_code: str, pollutant: str) -> None:
         levels[1].append(value)
     create_graph(levels)
 
+def health_advice(site_code: str) -> list:
+    """Gets health advice based on pollution levels for a certain area
 
+    Args:
+        site_code (str): site code to get health advice for
 
-
-
-
-
-
-
-
-def health_advice(site_code: str) -> str:
-    """Your documentation goes here"""
+    Returns:
+        list: the populations described by the api, and the health advice for each of these
+    """
     
     BASE_URL = 'http://api.erg.ic.ac.uk/AirQuality'
-    levels = []
-    pollutants = np.array(["NO", "PM10", "PM25"])
-    for i in range(0, 3):
-        level = get_live_data_from_api(site_code, pollutants[i])
-        data = level['RawAQData']['Data']
-        last_entry = data[len(data)-1]
-        value = last_entry['@Value']
-        if value == '':
-            levels.append(0)
-        else:
-            levels.append(float(value))
-
-    highest_level_index = maxvalue(levels)
-    highest_level = levels[highest_level_index]
-    x = get_health_advice_from_api(site_code, pollutants[highest_level_index])
-    x = requests.get(BASE_URL + '/Information/Species/Json')
-
+    health_indices = []
     x = requests.get(BASE_URL + '/Daily/MonitoringIndex/Latest/SiteCode={}/Json'.format(site_code))
-    
+    sites = x.json()
+    for each in sites['DailyAirQualityIndex']['LocalAuthority']['Site']['Species']:
+        health_indices.append(int(each['@AirQualityIndex']))
 
-    return x.json
+    top_health_index = health_indices[maxvalue(health_indices)]
 
-def get_health_advice_from_api(site_code: str, species_code) -> json:
-    BASE_URL = 'http://api.erg.ic.ac.uk/AirQuality'
-    x = requests.get(BASE_URL + '/Information/IndexHealthAdvice/AirQualityIndex=2/Json')
-    if x.status_code == 200:
-        return x.json()
-    else:
-        raise Exception(str(x.status_code) + " error code.")
+    x = requests.get(BASE_URL + '/Information/IndexHealthAdvice/AirQualityIndex={}/Json'.format(top_health_index))
+    info = x.json()
+    populations = []
+    health_advice = []
+    for each in info['AirQualityIndexHealthAdvice']['AirQualityBanding']['HealthAdvice']:
+        populations.append(each['@Population'])
+        health_advice.append(each['@Advice'])
 
-def yearly_reports():
-    """Your documentation goes here"""
-    # Your code goes here
-
-def safest_place():
-    """Your documentation goes here"""
-    # Your code goes here
-
-    BASE_URL = 'http://api.erg.ic.ac.uk/AirQuality'
-    x = requests.get(BASE_URL + '/Daily/MonitoringIndex/Latest/SiteCode={}/Json'.format('MY1'))
-    if x.status_code == 200:
-        return x.json()
-    else:
-        raise Exception(str(x.status_code) + " error code.")
-
-def rm_function_4(*args,**kwargs):
-    """Your documentation goes here"""
-    # Your code goes here
-
-#get_live_data_from_api()
-
-print(month_graph_pollutant('HRL', 'PM10'))
+    return populations, health_advice
