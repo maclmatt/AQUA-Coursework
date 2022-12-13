@@ -4,8 +4,7 @@ from reporting import daily_average, daily_median, hourly_average, monthly_avera
 from intelligence import find_red_pixels, find_cyan_pixels, detect_connected_components, detect_connected_components_sorted
 from monitoring import day_graph, week_graph, month_graph, day_graph_pollutant, week_graph_pollutant, month_graph_pollutant, health_advice
 
-
-def main_menu(): #DONE 2 marks
+def main_menu():
     """Gets and implements users choice from main menu
     Parameters: None
     Returns: None"""
@@ -32,7 +31,7 @@ def main_menu(): #DONE 2 marks
         print("Your choice is not valid, please enter 'R', 'I', 'M', 'A' or 'Q'.")
         main_menu()
 
-def reporting_menu(): #DONE 2 marks
+def reporting_menu():
     """Allows user to navigate data analysis options from the pollution reporting module
     Parameters: None
     Returns: None"""
@@ -220,7 +219,7 @@ def reporting_menu(): #DONE 2 marks
 
     main_menu()
 
-def intelligence_menu(): #DONE 2 marks, not tested
+def intelligence_menu():
     """Allows user to navigate image analysis options from the mobility intelligence module
     Parameters: None
     Returns: None"""
@@ -253,7 +252,7 @@ def intelligence_menu(): #DONE 2 marks, not tested
 
     main_menu()
 
-def monitoring_menu(): #DONE 2 marks
+def monitoring_menu():
     """Allows user to navigate live data analysis options from the real-time monitoring module
     Parameters: None
     Returns: None"""
@@ -368,14 +367,14 @@ def monitoring_menu(): #DONE 2 marks
 
     main_menu()
 
-def about(): #DONE 1 mark
+def about():
     """Prints module code and 6-digit candidate number, then returns to main menu
     Parameters: None
     Returns: None"""
     print("ECM1400")
     print("257111")
 
-def quit(): #DONE 1 mark
+def quit():
     """Quits program, with goodbye message
     Parameters: None
     Results: None"""

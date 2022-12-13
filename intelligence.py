@@ -2,7 +2,7 @@ import numpy as np
 from PIL import Image
 from utils import countvalue, maxvalue
 
-def find_red_pixels(map_filename: str, upper_threshold=100, lower_threshold=50) -> list: #DONE 2 marks
+def find_red_pixels(map_filename: str, upper_threshold=100, lower_threshold=50) -> list:
     """Generates a binary image file, with the white pixels representing any red pixels in the original map
 
     Args:
@@ -38,7 +38,7 @@ def find_red_pixels(map_filename: str, upper_threshold=100, lower_threshold=50) 
     red_image.save("map-red-pixels.jpg")
     return red_image_list
 
-def find_cyan_pixels(map_filename: str, upper_threshold=100, lower_threshold=50) -> list: #DONE 2 marks
+def find_cyan_pixels(map_filename: str, upper_threshold=100, lower_threshold=50) -> list:
     """Generates a binary image file, with the white pixels representing any cyan pixels in the original map
 
     Args:
@@ -74,7 +74,7 @@ def find_cyan_pixels(map_filename: str, upper_threshold=100, lower_threshold=50)
     cyan_image.save("map-cyan-pixels.jpg")
     return cyan_image_list
 
-def detect_connected_components(image: list) -> list: #DONE 12 marks
+def detect_connected_components(image: list) -> list:
     """Finds all 8-connected components, where there are adjacent white pixels
 
     Args:
@@ -96,7 +96,6 @@ def detect_connected_components(image: list) -> list: #DONE 12 marks
     WHITE = np.array([255, 255, 255])
     MARK = np.full((WIDTH, HEIGHT), 0)
     Q = []
-    global conncomponentscount
     conncomponentscount = 1
     conncomponents = []
 
@@ -152,7 +151,7 @@ def detect_connected_components(image: list) -> list: #DONE 12 marks
             
     return MARK
 
-def detect_connected_components_sorted(MARK: list): #DONE 4 marks
+def detect_connected_components_sorted(MARK: list):
     """Sorts all connected components into descending order, and generates image of the two largest connected components
 
     Args:

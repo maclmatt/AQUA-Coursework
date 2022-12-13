@@ -3,7 +3,7 @@
 # the signatures determined by the project specification
 
 
-def sumvalues(values: list) -> int: #DONE 2 marks
+def sumvalues(values: list) -> int:
     """Returns the sum of the values in the list
     Parameters - values : list
     Returns - sumofvalues : int
@@ -16,7 +16,7 @@ def sumvalues(values: list) -> int: #DONE 2 marks
             raise TypeError("The list contains non-numerical values")
     return sumofvalues
 
-def maxvalue(values: list) -> int: #DONE 2 marks
+def maxvalue(values: list) -> int:
     """Returns index of the maximum value in the list
     Parameters - values : list
     Returns - index of maximum values : int"""    
@@ -31,7 +31,7 @@ def maxvalue(values: list) -> int: #DONE 2 marks
             raise TypeError("The list contains non-numerical values")
     return maxindex
 
-def minvalue(values: list) -> int: #DONE 2 marks
+def minvalue(values: list) -> int:
     """Returns index of the minimum value in the list
     Parameters - values : list
     Returns - index of minimum values : int"""    
@@ -46,14 +46,14 @@ def minvalue(values: list) -> int: #DONE 2 marks
             raise TypeError("The list contains non-numerical values")
     return minindex
 
-def meannvalue(values: list) -> float: #DONE 2 marks
+def meannvalue(values: list) -> float:
     """Returns mean average of the values in the list
     Parameters - values : list
     Returns - mean of values : float"""
     mean = sumvalues(values)/len(values)
     return mean
 
-def countvalue(values: list, x: any) -> int: #DONE 2 marks
+def countvalue(values: list, x: any) -> int:
     """Returns occurrences of the value x in the list values
     Parameters - values : list, x : int/float
     Returns - occurrences of x : int"""  

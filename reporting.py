@@ -4,7 +4,7 @@ import datetime
 from utils import meannvalue, maxvalue
 
 
-def daily_average(data: str, monitoring_station: str, pollutant: str) -> list: #DONE 4 marks
+def daily_average(data: str, monitoring_station: str, pollutant: str) -> list:
     """Calculates daily averages for a pollutant at a monitoring station
 
     Args:
@@ -51,7 +51,7 @@ def daily_average(data: str, monitoring_station: str, pollutant: str) -> list: #
             daycount += 1
     return daily_averages
 
-def daily_median(data: str, monitoring_station: str, pollutant: str) -> list: #DONE 5 marks
+def daily_median(data: str, monitoring_station: str, pollutant: str) -> list:
     """Calculates daily medians for a pollutant at a monitoring station
 
     Args:
@@ -106,7 +106,7 @@ def daily_median(data: str, monitoring_station: str, pollutant: str) -> list: #D
             daycount += 1
     return daily_medians
     
-def hourly_average(data: str, monitoring_station: str, pollutant: str) -> list: #DONE 5 marks
+def hourly_average(data: str, monitoring_station: str, pollutant: str) -> list:
     """Calculates hourly averages across 365 days for a particular pollutant and monitoring station
 
     Args:
@@ -154,7 +154,7 @@ def hourly_average(data: str, monitoring_station: str, pollutant: str) -> list: 
                 hourly_averages.append("Incomplete data")
         return hourly_averages
 
-def monthly_average(data: str, monitoring_station: str, pollutant: str) -> list: #DONE 4 marks
+def monthly_average(data: str, monitoring_station: str, pollutant: str) -> list:
     """Calculates the montly average of a pollutant at a particular monitoring station
 
     Args:
@@ -202,7 +202,7 @@ def monthly_average(data: str, monitoring_station: str, pollutant: str) -> list:
             monthly_averages.append(meannvalue(monthvalues))
         return monthly_averages
 
-def peak_hour_date(data: str, date: str, monitoring_station: str, pollutant: str) -> str: #DONE 4 marks
+def peak_hour_date(data: str, date: str, monitoring_station: str, pollutant: str) -> str:
     """Finds the hour with the highest pollution of the pollutant on a particular date for a particular monitoring station
 
     Args:
@@ -247,7 +247,7 @@ def peak_hour_date(data: str, date: str, monitoring_station: str, pollutant: str
         peakhour = peakvalueindex + 1
         return peakhour
         
-def count_missing_data(data: str, monitoring_station: str, pollutant: str) -> int: #DONE 4 marks
+def count_missing_data(data: str, monitoring_station: str, pollutant: str) -> int:
     """Calculates number of 'No data' entries in the data for a particular monitoring station and pollutant
 
     Args:
@@ -282,7 +282,7 @@ def count_missing_data(data: str, monitoring_station: str, pollutant: str) -> in
         nodatacount = len(x[0])
     return nodatacount
 
-def fill_missing_data(data: str, new_value: float,  monitoring_station: str, pollutant: str) -> list: #DONE 4 marks
+def fill_missing_data(data: str, new_value: float,  monitoring_station: str, pollutant: str) -> list:
     """Returns copy of the data for a monitoring station, with all the 'No data' entries for a 
         particular pollutant replaced with a new value
 
